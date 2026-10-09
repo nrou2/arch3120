@@ -40,6 +40,26 @@ call ReadInt
 mov input, eax
 
 
+cmp input, 5
+jz attack
+;Force default if the input is bad
+
+dec input
+jz attack
+
+dec input
+jz buff
+
+dec input
+jz heal
+
+dec input
+jz debuff
+
+dec input
+jz itemx
+
+
 
 attack:
 
