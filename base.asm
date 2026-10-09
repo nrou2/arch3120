@@ -129,6 +129,14 @@ cmp eax,0
 
 JGE debuffsuccess
 
+mov edx,OFFSET prompt5
+call Crlf
+call Crlf
+call WriteString
+call Crlf
+call Crlf
+jmp enemy
+
 
 debuffsuccess:
 mov eax, mp
