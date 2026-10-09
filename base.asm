@@ -15,6 +15,7 @@ prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
 prompt5 BYTE "Move failed, you can't afford it!",0
 prompt6 BYTE "Enemy strength can't go any lower than 5!"
+prompt7 BYTE "Enemy current strength: ",0
 .code
 main PROC
 
@@ -42,6 +43,12 @@ mov edx,OFFSET prompt4
 call WriteString
 call Crlf
 mov eax, dhealth
+call WriteInt
+call Crlf
+mov edx,OFFSET prompt7
+call WriteString
+call Crlf
+mov eax, dstrength
 call WriteInt
 call Crlf
 
@@ -110,17 +117,17 @@ jmp enemy
 
 
 debuff:
+sub dstrength, 3
 mov eax, dstrength
 cmp eax, 5
-jge debuffsuccess
+jge debuffcap
+jmp enemy
 
+debuffcap:
+mov dstrength, 5
 mov edx,OFFSET prompt6
 call WriteString
 call Crlf
-jmp enemy
-
-debuffsuccess:
-sub dstrength, 3
 jmp enemy
 
 item:
