@@ -81,27 +81,27 @@ jmp enemy
 
 heal:
 mov eax, mp
+sub eax, 50
 cmp eax,0
 
-JAE healsuccess1
+JGE healsuccess
 jmp enemy
 
 
-
-healsuccess1:
-mov eax, phealth
-cmp eax, 100
-
-JBE healsuccess2
-jmp enemy
-
-
-healsuccess2:
-add phealth, 50
+healsuccess:
 mov eax, mp
 sub eax, 50
 mov mp, eax
+
+add phealth, 50
+cmp phealth, 100
+JGE healcap
 jmp enemy
+
+healcap:
+mov phealth,100
+jmp enemy
+
 
 debuff:
 sub dstrength, 3
