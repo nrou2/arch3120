@@ -83,7 +83,7 @@ jmp enemy
 
 
 enemy:
-sub phealth, 20
+sub phealth, dstrength
 jz lose
 jmp turn
 
