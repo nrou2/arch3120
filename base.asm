@@ -132,6 +132,26 @@ jle win
 jmp enemy
 
 buff:
+
+mov eax, mp
+sub eax, 10
+cmp eax,0
+
+JGE buffsuccess
+mov eax, red + (black * 16)
+call SetTextColor
+mov edx,OFFSET prompt5
+call Crlf
+call Crlf
+call WriteString
+call Crlf
+call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
+jmp enemy
+
+buffsuccess:
+
 mov eax, green + (black * 16)
 call SetTextColor
 add strength,10
