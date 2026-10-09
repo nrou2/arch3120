@@ -15,7 +15,7 @@ prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
 prompt5 BYTE "Move failed, you can't afford it!",0
-prompt6 BYTE "Enemy strength can't go any lower than 5!"
+prompt6 BYTE "Enemy strength can't go any lower than 5!",0
 prompt7 BYTE "Enemy current strength: ",0
 prompt8 BYTE "You already used that!",0
 prompt9 BYTE "Enemy attacked for ",0
@@ -23,6 +23,7 @@ prompt10 BYTE "You used a basic attack for ",0
 prompt11 BYTE "You used a spell for ",0
 prompt12 BYTE "You healed 50 damage.",0
 prompt13 BYTE "You used your full heal up.",0
+prompt14 BYTE "You reduced the enemy strength.",0
 .code
 main PROC
 
@@ -173,6 +174,8 @@ mov eax, mp
 sub eax, 15
 mov mp, eax
 sub dstrength, 3
+mov edx,OFFSET prompt14
+call WriteString
 mov eax, dstrength
 cmp eax, 5
 jl debuffcap
@@ -234,12 +237,12 @@ mov ebx, dhealth
 sub ebx, eax
 mov dhealth, ebx
 
-mov edx,OFFSET prompt10
+mov edx,OFFSET prompt11
 call WriteString
 
 call WriteInt
 call CRLF
-call CRLF
+
 
 cmp ebx, 0
 jle win
@@ -265,6 +268,7 @@ mov phealth, ebx
 add eax, dstrength
 call WriteInt
 call Crlf
+call CRLF
 
 
 cmp phealth,0
