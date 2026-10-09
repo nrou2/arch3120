@@ -18,8 +18,8 @@ prompt5 BYTE "Move failed, you can't afford it!",0
 prompt6 BYTE "Enemy strength can't go any lower than 5!"
 prompt7 BYTE "Enemy current strength: ",0
 prompt8 BYTE "You already used that!",0
-prompt9 BYTE "Enemy attacked for "
-prompt10 BYTE "You used a basic attack for "
+prompt9 BYTE "Enemy attacked for ",0
+prompt10 BYTE "You used a basic attack for ",0
 .code
 main PROC
 
