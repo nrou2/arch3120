@@ -4,7 +4,7 @@ INCLUDE Irvine32.inc
 loss BYTE "You Lose",0
 vic BYTE "You Win",0
 phealth DWORD 100
-dhealth DWORD 250
+dhealth DWORD 335
 strength DWORD 25
 dstrength DWORD 15
 input DWORD 1
@@ -44,21 +44,33 @@ call Crlf
 mov edx,OFFSET prompt2
 call WriteString
 call Crlf
+mov eax, green + (black * 16)
+call SetTextColor
 mov eax, phealth
 call WriteInt
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt3
 call WriteString
 call Crlf
+mov eax, blue + (black * 16)
+call SetTextColor
 mov eax, mp
 call WriteInt
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt4
 call WriteString
 call Crlf
+mov eax, green + (black * 16)
+call SetTextColor
 mov eax, dhealth
 call WriteInt
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt16
 call WriteString
 call Crlf
