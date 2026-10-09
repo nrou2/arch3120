@@ -13,6 +13,8 @@ prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25
 prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
+prompt5 BYTE "Move failed, you can't afford it!",0
+prompt6 BYTE "Enemy strength can't go any lower than 5!"
 .code
 main PROC
 
@@ -44,11 +46,11 @@ call WriteInt
 call Crlf
 
 call ReadInt
-;I don't remember if we went over ReadInt specifically in class, but I assumed if ReadString works in one of our labs, there'd probably be a ReadInt, and that worked. Same with writeint
+;I don't remember if we went over ReadInt specifically in class, but I assumed if ReadString works in one of our labs, there'd probably be a ReadInt, and that worked. Same with Writeint.
 mov input, eax
 cmp input, 5
 jz attack
-;Force default if the input is bad
+;Force default attack if the input is over 5
 
 dec input
 jz attack
@@ -85,6 +87,10 @@ sub eax, 50
 cmp eax,0
 
 JGE healsuccess
+
+mov edx,OFFSET prompt5
+call WriteString
+call Crlf
 jmp enemy
 
 
@@ -104,6 +110,16 @@ jmp enemy
 
 
 debuff:
+mov eax, dstrength
+cmp eax, 5
+jge debuffsuccess
+
+mov edx,OFFSET prompt6
+call WriteString
+call Crlf
+jmp enemy
+
+debuffsuccess:
 sub dstrength, 3
 jmp enemy
 
