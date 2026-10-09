@@ -96,6 +96,8 @@ jz ice
 
 
 attack:
+mov eax, green + (black * 16)
+call SetTextColor
 call Randomize
 call Crlf
 call Crlf
@@ -118,15 +120,22 @@ add eax, strength
 call WriteInt
 call Crlf
 
+mov eax, white + (black * 16)
+call SetTextColor
+
 cmp dhealth, 0
 jle win
 jmp enemy
 
 buff:
+mov eax, green + (black * 16)
+call SetTextColor
 add strength,10
 mov edx,OFFSET prompt15
 call WriteString
 call CRLF
+mov eax, white + (black * 16)
+call SetTextColor
 jmp enemy
 
 heal:
@@ -149,11 +158,14 @@ mov mp, eax
 
 add phealth, 50
 cmp phealth, 100
-
+mov eax, green + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt12
 call WriteString
 call CRLF
 call CRLF
+mov eax, white + (black * 16)
+call SetTextColor
 
 JGE healcap
 jmp enemy
@@ -181,6 +193,8 @@ jmp enemy
 
 
 debuffsuccess:
+mov eax, green + (black * 16)
+call SetTextColor
 mov eax, mp
 sub eax, 15
 mov mp, eax
@@ -189,6 +203,8 @@ mov edx,OFFSET prompt14
 call WriteString
 mov eax, dstrength
 cmp eax, 5
+mov eax, white + (black * 16)
+call SetTextColor
 jl debuffcap
 jmp enemy
 
