@@ -144,10 +144,13 @@ sub eax, 50
 cmp eax,0
 
 JGE healsuccess
-
+mov eax, red + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt5
 call WriteString
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 jmp enemy
 
 
@@ -182,13 +185,16 @@ sub eax, 15
 cmp eax,0
 
 JGE debuffsuccess
-
+mov eax, red + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt5
 call Crlf
 call Crlf
 call WriteString
 call Crlf
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 jmp enemy
 
 
@@ -210,9 +216,13 @@ jmp enemy
 
 debuffcap:
 mov dstrength, 5
+mov eax, yellow + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt6
 call WriteString
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 jmp enemy
 
 item:
