@@ -218,12 +218,18 @@ jmp enemy
 item:
 cmp fullheal, 0
 JNZ itemsuccess
+mov eax, red + (black * 16)
+call SetTextColor
+
 call Crlf
 call Crlf
 mov edx,OFFSET prompt8
 call WriteString
 call Crlf
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
+
 jmp enemy
 
 
@@ -247,12 +253,17 @@ cmp eax,0
 
 JGE icesuccess
 
+mov eax, red + (black * 16)
+call SetTextColor
 mov edx,OFFSET prompt5
 call Crlf
 call Crlf
 call WriteString
 call Crlf
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
+
 jmp enemy
 
 
@@ -285,6 +296,8 @@ jmp enemy
 
 
 enemy:
+mov eax, red + (black * 16)
+call SetTextColor
 call Randomize
 call Crlf
 call Crlf
@@ -305,6 +318,8 @@ call WriteInt
 call Crlf
 call CRLF
 
+mov eax, white + (black * 16)
+call SetTextColor
 
 cmp phealth,0
 jle lose
@@ -312,11 +327,15 @@ jmp turn
 
 
 win:
+mov eax, green + (black * 16)
+call SetTextColor
 mov edx,OFFSET vic
 call WriteString
 jmp done
 
 lose:
+mov eax, red + (black * 16)
+call SetTextColor
 mov edx,OFFSET loss
 call WriteString
 jmp done
