@@ -151,7 +151,9 @@ call SetTextColor
 jmp enemy
 
 buffsuccess:
-
+mov eax, mp
+sub eax, 10
+mov mp, eax
 mov eax, green + (black * 16)
 call SetTextColor
 add strength,10
