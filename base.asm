@@ -19,8 +19,8 @@ prompt6 BYTE "Enemy strength can't go any lower than 5!",0
 prompt7 BYTE "Enemy current strength: ",0
 prompt8 BYTE "You already used that!",0
 prompt9 BYTE "Enemy attacked for ",0
-prompt10 BYTE "You used a basic attack for ",0
-prompt11 BYTE "You used a spell for ",0
+prompt10 BYTE "You used a basic attack dealing ",0
+prompt11 BYTE "You used a spell dealing ",0
 prompt12 BYTE "You healed 50 damage.",0
 prompt13 BYTE "You used your full heal up.",0
 prompt14 BYTE "You reduced the enemy strength.",0
@@ -30,12 +30,16 @@ prompt16 BYTE "Your current strength: ", 0
 main PROC
 
 
+mov eax, white + (black * 16)
+call SetTextColor
+
 jmp turn
 
 
 turn:
 mov edx,OFFSET prompt1
 call WriteString
+call Crlf
 call Crlf
 mov edx,OFFSET prompt2
 call WriteString
@@ -207,10 +211,11 @@ mov mp, eax
 sub dstrength, 3
 mov edx,OFFSET prompt14
 call WriteString
-mov eax, dstrength
-cmp eax, 5
+
 mov eax, white + (black * 16)
 call SetTextColor
+mov eax, dstrength
+cmp eax, 5
 jl debuffcap
 jmp enemy
 
