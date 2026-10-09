@@ -6,7 +6,7 @@ vic BYTE "You Win",0
 phealth DWORD 100
 dhealth DWORD 250
 strength DWORD 25
-dstrength DWORD 20
+dstrength DWORD 15
 input DWORD 1
 mp DWORD 100 
 fullheal DWORD 1
@@ -18,6 +18,7 @@ prompt5 BYTE "Move failed, you can't afford it!",0
 prompt6 BYTE "Enemy strength can't go any lower than 5!"
 prompt7 BYTE "Enemy current strength: ",0
 prompt8 BYTE "You already used that!",0
+prompt9 BYTE "Enemy attacked for "
 .code
 main PROC
 
@@ -206,11 +207,28 @@ jmp enemy
 
 
 enemy:
-mov eax, phealth
-sub eax, dstrength
-mov phealth, eax
+call Randomize
+call Crlf
+call Crlf
+mov edx,OFFSET prompt9
+call WriteString
 
-jz lose
+mov eax, 10
+call RandomRange
+mov ebx, phealth
+sub ebx, dstrength
+sub ebx, eax
+mov phealth, ebx
+
+
+
+add eax, dstrength
+call WriteInt
+call Crlf
+
+
+cmp phealth,0
+jle lose
 jmp turn
 
 
