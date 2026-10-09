@@ -122,6 +122,18 @@ jmp enemy
 
 
 debuff:
+
+mov eax, mp
+sub eax, 15
+cmp eax,0
+
+JGE debuffsuccess
+
+
+debuffsuccess:
+mov eax, mp
+sub eax, 15
+mov mp, eax
 sub dstrength, 3
 mov eax, dstrength
 cmp eax, 5
@@ -160,7 +172,10 @@ cmp eax,0
 JGE icesuccess
 
 mov edx,OFFSET prompt5
+call Crlf
+call Crlf
 call WriteString
+call Crlf
 call Crlf
 jmp enemy
 
