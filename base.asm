@@ -228,12 +228,16 @@ jmp enemy
 
 
 itemsuccess:
+mov eax, green + (black * 16)
+call SetTextColor
 mov fullheal,0
 mov phealth, 100
 mov edx,OFFSET prompt13
 call WriteString
 call CRLF
 call CRLF
+mov eax, white + (black * 16)
+call SetTextColor
 jmp enemy
 
 ice:
@@ -253,6 +257,8 @@ jmp enemy
 
 
 icesuccess:
+mov eax, green + (black * 16)
+call SetTextColor
 sub mp, 25
 
 mov eax, strength
@@ -268,6 +274,8 @@ mov edx,OFFSET prompt11
 call WriteString
 
 call WriteInt
+mov eax, white + (black * 16)
+call SetTextColor
 call CRLF
 
 
