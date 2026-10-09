@@ -9,7 +9,7 @@ strength DWORD 25
 dstrength DWORD 20
 input DWORD 1
 mp DWORD 100 
-prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 10) 5 - use full heal (free, one time only)",0
+prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 10) 5 - use full heal (free, one time only) 6 - Icicle Spell (Costs 25)",0
 prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
@@ -55,7 +55,7 @@ call Crlf
 call ReadInt
 ;I don't remember if we went over ReadInt specifically in class, but I assumed if ReadString works in one of our labs, there'd probably be a ReadInt, and that worked. Same with Writeint.
 mov input, eax
-cmp input, 5
+cmp input, 6
 jz attack
 ;Force default attack if the input is over 5
 
@@ -73,6 +73,9 @@ jz debuff
 
 dec input
 jz item
+
+dec input
+jz ice
 
 
 
@@ -133,6 +136,21 @@ jmp enemy
 item:
 mov phealth, 100
 jmp enemy
+
+ice:
+mov eax, mp
+sub eax, 25
+cmp eax,0
+
+JGE icesuccess
+
+mov edx,OFFSET prompt5
+call WriteString
+call Crlf
+jmp enemy
+
+icesuccess:
+
 
 
 enemy:
