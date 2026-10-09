@@ -9,13 +9,15 @@ strength DWORD 25
 dstrength DWORD 20
 input DWORD 1
 mp DWORD 100 
-prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 10) 5 - use full heal (free, one time only) 6 - Icicle Spell (Costs 25)",0
+fullheal DWORD 1
+prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 15) 5 - use full heal (free, one time only) 6 - Icicle Spell (Costs 25)",0
 prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
 prompt5 BYTE "Move failed, you can't afford it!",0
 prompt6 BYTE "Enemy strength can't go any lower than 5!"
 prompt7 BYTE "Enemy current strength: ",0
+prompt8 BYTE "You already used that!",0
 .code
 main PROC
 
@@ -134,6 +136,19 @@ call Crlf
 jmp enemy
 
 item:
+cmp fullheal, 0
+JNZ itemsuccess
+call Crlf
+call Crlf
+mov edx,OFFSET prompt8
+call WriteString
+call Crlf
+call Crlf
+jmp enemy
+
+
+itemsuccess:
+mov fullheal,0
 mov phealth, 100
 jmp enemy
 
