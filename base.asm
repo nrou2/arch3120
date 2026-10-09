@@ -10,7 +10,7 @@ dstrength DWORD 15
 input DWORD 1
 mp DWORD 100 
 fullheal DWORD 1
-prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 15) 5 - use full heal (free, one time only) 6 - Icicle Spell (Costs 25)",0
+prompt1 BYTE "enter 1 - Basic Attack 2 - Strengthen Self (costs 10, strength+10) 3 - Heal Self (costs 25, heal up to 50) 4 - Weaken Enemy (costs 15, reduce strength) 5 - Full Heal Item (free, only one) 6 - Icicle Spell (Costs 25)",0
 prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
