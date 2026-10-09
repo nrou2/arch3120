@@ -104,7 +104,6 @@ mov eax, green + (black * 16)
 call SetTextColor
 call Randomize
 call Crlf
-call Crlf
 mov edx,OFFSET prompt10
 call WriteString
 
@@ -136,16 +135,16 @@ buff:
 mov eax, mp
 sub eax, 10
 cmp eax,0
-
+call Crlf
 JGE buffsuccess
 mov eax, red + (black * 16)
 call SetTextColor
 mov edx,OFFSET prompt5
-call Crlf
+
 call Crlf
 call WriteString
 call Crlf
-call Crlf
+
 mov eax, white + (black * 16)
 call SetTextColor
 jmp enemy
@@ -190,8 +189,8 @@ cmp phealth, 100
 mov eax, green + (black * 16)
 call SetTextColor
 mov edx,OFFSET prompt12
-call WriteString
 call CRLF
+call WriteString
 call CRLF
 mov eax, white + (black * 16)
 call SetTextColor
@@ -225,6 +224,7 @@ jmp enemy
 
 
 debuffsuccess:
+call CRLF
 mov eax, green + (black * 16)
 call SetTextColor
 mov eax, mp
@@ -271,13 +271,13 @@ jmp enemy
 
 
 itemsuccess:
+call CRLF
 mov eax, green + (black * 16)
 call SetTextColor
 mov fullheal,0
 mov phealth, 100
 mov edx,OFFSET prompt13
 call WriteString
-call CRLF
 call CRLF
 mov eax, white + (black * 16)
 call SetTextColor
