@@ -9,7 +9,7 @@ strength DWORD 25
 dstrength DWORD 20
 input DWORD 1
 mp DWORD 100 
-prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 10) 5 - use full heal (free, one time only)\n",0
+prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 10) 5 - use full heal (free, one time only)",0
 prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
@@ -80,7 +80,27 @@ add strength,10
 jmp enemy
 
 heal:
+mov eax, mp
+cmp eax,0
+
+JAE healsuccess1
+jmp enemy
+
+
+
+healsuccess1:
+mov eax, phealth
+cmp eax, 100
+
+JBE healsuccess2
+jmp enemy
+
+
+healsuccess2:
 add phealth, 50
+mov eax, mp
+sub eax, 50
+mov mp, eax
 jmp enemy
 
 debuff:
