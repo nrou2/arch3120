@@ -19,6 +19,7 @@ prompt6 BYTE "Enemy strength can't go any lower than 5!"
 prompt7 BYTE "Enemy current strength: ",0
 prompt8 BYTE "You already used that!",0
 prompt9 BYTE "Enemy attacked for "
+prompt10 BYTE "You used a basic attack for "
 .code
 main PROC
 
@@ -83,12 +84,31 @@ jz ice
 
 
 attack:
-mov eax, dhealth
-sub eax, strength
-mov dhealth, eax
+call Randomize
+call Crlf
+call Crlf
+mov edx,OFFSET prompt10
+call WriteString
 
-jz win
-jnz enemy
+mov eax, 7
+call RandomRange
+sub eax, 3
+;Random variation of +- 3 in player basic attack, consistency can be gained through using spell attack instead
+
+mov ebx, dhealth
+sub ebx, strength
+sub ebx, eax
+mov dhealth, ebx
+
+
+
+add eax, strength
+call WriteInt
+call Crlf
+
+cmp dhealth, 0
+jle win
+jmp enemy
 
 buff:
 add strength,10
