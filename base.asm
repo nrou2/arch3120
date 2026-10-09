@@ -64,7 +64,7 @@ call SetTextColor
 mov edx,OFFSET prompt4
 call WriteString
 call Crlf
-mov eax, green + (black * 16)
+mov eax, red + (black * 16)
 call SetTextColor
 mov eax, dhealth
 call WriteInt
@@ -74,15 +74,23 @@ call SetTextColor
 mov edx,OFFSET prompt16
 call WriteString
 call Crlf
+mov eax, yellow + (black * 16)
+call SetTextColor
 mov eax, strength
 call WriteInt
+mov eax, white + (black * 16)
+call SetTextColor
 call Crlf
 mov edx,OFFSET prompt7
 call WriteString
 call Crlf
+mov eax, yellow + (black * 16)
+call SetTextColor
 mov eax, dstrength
 call WriteInt
 call Crlf
+mov eax, white + (black * 16)
+call SetTextColor
 
 call ReadInt
 ;I don't remember if we went over ReadInt specifically in class, but I assumed if ReadString works in one of our labs, there'd probably be a ReadInt, and that worked. Same with Writeint.
