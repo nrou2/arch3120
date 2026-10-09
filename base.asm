@@ -20,6 +20,9 @@ prompt7 BYTE "Enemy current strength: ",0
 prompt8 BYTE "You already used that!",0
 prompt9 BYTE "Enemy attacked for ",0
 prompt10 BYTE "You used a basic attack for ",0
+prompt11 BYTE "You used a spell for ",0
+prompt12 BYTE "You healed 50 damage.",0
+prompt13 BYTE "You used your full heal up.",0
 .code
 main PROC
 
@@ -134,6 +137,12 @@ mov mp, eax
 
 add phealth, 50
 cmp phealth, 100
+
+mov edx,OFFSET prompt12
+call WriteString
+call CRLF
+call CRLF
+
 JGE healcap
 jmp enemy
 
@@ -191,6 +200,10 @@ jmp enemy
 itemsuccess:
 mov fullheal,0
 mov phealth, 100
+mov edx,OFFSET prompt13
+call WriteString
+call CRLF
+call CRLF
 jmp enemy
 
 ice:
@@ -220,6 +233,13 @@ add eax, 3
 mov ebx, dhealth
 sub ebx, eax
 mov dhealth, ebx
+
+mov edx,OFFSET prompt10
+call WriteString
+
+call WriteInt
+call CRLF
+call CRLF
 
 cmp ebx, 0
 jle win
