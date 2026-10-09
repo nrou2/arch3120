@@ -120,7 +120,7 @@ debuff:
 sub dstrength, 3
 mov eax, dstrength
 cmp eax, 5
-jge debuffcap
+jl debuffcap
 jmp enemy
 
 debuffcap:
