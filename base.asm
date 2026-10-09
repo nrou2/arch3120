@@ -6,6 +6,7 @@ vic BYTE "You Win",0
 phealth BYTE 100
 dhealth BYTE 250
 strength BYTE 25
+dstrength BYTE 20
 input BYTE 1
 mp BYTE 100 
 prompt1 BYTE "enter 1 - attack 2 - raise attack (costs 10) 3 - heal 50 (costs 25) 4 - weaken enemy (costs 10) 5 - use full heal (free, one time only)",0
@@ -38,8 +39,6 @@ call WriteString
 call ReadInt
 ;I don't remember if we went over ReadInt specifically in class, but I assumed if ReadString works in one of our labs, there'd probably be a ReadInt, and that worked.
 mov input, eax
-
-
 cmp input, 5
 jz attack
 ;Force default if the input is bad
@@ -62,14 +61,31 @@ jz itemx
 
 
 attack:
+sub dhealth, strength
+jz win
+jnz enemy
 
 buff:
+add strength,10
+jmp enemy
 
 heal:
+add phealth, 50
+jmp enemy
 
 debuff:
+sub dstrength, 3
+jmp enemy
 
 item:
+mov phealth, 100
+jmp enemy
+
+
+enemy:
+sub phealth, 20
+jz lose
+jmp turn
 
 
 win:
