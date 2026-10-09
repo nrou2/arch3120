@@ -25,6 +25,7 @@ prompt12 BYTE "You healed 50 damage.",0
 prompt13 BYTE "You used your full heal up.",0
 prompt14 BYTE "You reduced the enemy strength.",0
 prompt15 BYTE "You raised your own strength!",0
+prompt16 BYTE "Your current strength: ", 0
 .code
 main PROC
 
@@ -52,6 +53,12 @@ mov edx,OFFSET prompt4
 call WriteString
 call Crlf
 mov eax, dhealth
+call WriteInt
+call Crlf
+mov edx,OFFSET prompt16
+call WriteString
+call Crlf
+mov eax, strength
 call WriteInt
 call Crlf
 mov edx,OFFSET prompt7
