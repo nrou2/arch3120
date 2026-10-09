@@ -55,9 +55,9 @@ call Crlf
 call ReadInt
 ;I don't remember if we went over ReadInt specifically in class, but I assumed if ReadString works in one of our labs, there'd probably be a ReadInt, and that worked. Same with Writeint.
 mov input, eax
-cmp input, 6
+cmp input, 7
 jz attack
-;Force default attack if the input is over 5
+;Force default attack if the input is over 6
 
 dec input
 jz attack
@@ -149,8 +149,22 @@ call WriteString
 call Crlf
 jmp enemy
 
-icesuccess:
 
+icesuccess:
+sub mp, 25
+
+mov eax, strength
+mov ebx, 2
+mul ebx
+add eax, 3
+
+mov ebx, dhealth
+sub ebx, eax
+mov dhealth, ebx
+
+cmp ebx, 0
+jle win
+jmp enemy
 
 
 enemy:
