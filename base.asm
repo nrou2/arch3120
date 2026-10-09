@@ -24,6 +24,7 @@ prompt11 BYTE "You used a spell for ",0
 prompt12 BYTE "You healed 50 damage.",0
 prompt13 BYTE "You used your full heal up.",0
 prompt14 BYTE "You reduced the enemy strength.",0
+prompt15 BYTE "You raised your own strength!",0
 .code
 main PROC
 
@@ -116,6 +117,9 @@ jmp enemy
 
 buff:
 add strength,10
+mov edx,OFFSET prompt15
+call WriteString
+call CRLF
 jmp enemy
 
 heal:
