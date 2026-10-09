@@ -169,6 +169,7 @@ sub eax, 50
 cmp eax,0
 
 JGE healsuccess
+call crlf
 mov eax, red + (black * 16)
 call SetTextColor
 mov edx,OFFSET prompt5
@@ -213,10 +214,10 @@ JGE debuffsuccess
 mov eax, red + (black * 16)
 call SetTextColor
 mov edx,OFFSET prompt5
-call Crlf
+
 call Crlf
 call WriteString
-call Crlf
+
 call Crlf
 mov eax, white + (black * 16)
 call SetTextColor
@@ -233,6 +234,7 @@ mov mp, eax
 sub dstrength, 3
 mov edx,OFFSET prompt14
 call WriteString
+call CRLF
 
 mov eax, white + (black * 16)
 call SetTextColor
@@ -258,11 +260,11 @@ JNZ itemsuccess
 mov eax, red + (black * 16)
 call SetTextColor
 
-call Crlf
+
 call Crlf
 mov edx,OFFSET prompt8
 call WriteString
-call Crlf
+
 call Crlf
 mov eax, white + (black * 16)
 call SetTextColor
@@ -294,9 +296,7 @@ mov eax, red + (black * 16)
 call SetTextColor
 mov edx,OFFSET prompt5
 call Crlf
-call Crlf
 call WriteString
-call Crlf
 call Crlf
 mov eax, white + (black * 16)
 call SetTextColor
@@ -305,6 +305,7 @@ jmp enemy
 
 
 icesuccess:
+call CRLF
 mov eax, green + (black * 16)
 call SetTextColor
 sub mp, 25
