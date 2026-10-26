@@ -251,7 +251,7 @@ call SetTextColor
 mov eax, mp
 sub eax, 15
 mov mp, eax
-sub dstrength, 3
+sub dstrength, 2
 mov edx,OFFSET prompt14
 call WriteString
 call CRLF
