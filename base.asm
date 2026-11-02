@@ -10,7 +10,7 @@ dstrength DWORD 15
 input DWORD 1
 mp DWORD 100 
 fullheal DWORD 1
-prompt1 BYTE "Enter Number: 1 - Basic Attack 2 - Strengthen Self (costs 10, strength+10) 3 - Heal Self (costs 50, heal up to 50) 4 - Weaken Enemy (costs 15, reduce strength) 5 - Full Heal Item (free, only one) 6 - Icicle Spell (Costs 25)",0
+prompt1 BYTE "Enter Number: 1 - Basic Attack 2 - Strengthen Self (costs 10, strength+10) 3 - Heal Self (costs 50, heal up to 50) 4 - Weaken Enemy (costs 15, reduce strength) 5 - Full Heal Item (free, only one) 6 - Icicle Spell (Costs 20)",0
 prompt2 BYTE "Your current health: ",0
 prompt3 BYTE "Your current mana: ",0
 prompt4 BYTE "Enemy current health: ",0
@@ -151,11 +151,11 @@ jle win
 jmp enemy
 
 buff:
-
+call Crlf
 mov eax, mp
 sub eax, 10
 cmp eax,0
-call Crlf
+
 JGE buffsuccess
 mov eax, red + (black * 16)
 call SetTextColor
@@ -307,7 +307,7 @@ jmp enemy
 
 ice:
 mov eax, mp
-sub eax, 25
+sub eax, 20
 cmp eax,0
 
 JGE icesuccess
@@ -328,7 +328,7 @@ icesuccess:
 call CRLF
 mov eax, green + (black * 16)
 call SetTextColor
-sub mp, 25
+sub mp, 20
 
 mov eax, strength
 mov ebx, 2
