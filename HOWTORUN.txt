@@ -1,3 +1,0 @@
-If you slide it into Irvine's project32 prepared project, and build it, it runs in visual studio, I used 2026.
-
-Alternatively, there is an exe to run it directly.
